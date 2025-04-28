@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>xFormers optimized operators | xFormers 0.0.30 documentation</title>
+  <title>xFormers optimized operators | xFormers 0.0.31 documentation</title>
   
   <script src="../_static/js/ga.js"></script>
   <script src="../_static/js/redirect.js"></script>
@@ -23,7 +23,7 @@
   
   <link rel="canonical" href="https://facebookresearch.github.io/xformerscomponents/ops.html" />
   
-  <meta property="og:title" content="xFormers optimized operators | xFormers 0.0.30 documentation">
+  <meta property="og:title" content="xFormers optimized operators | xFormers 0.0.31 documentation">
   <meta name="description" content="API docs for xFormers. xFormers is a PyTorch extension library for composable and optimized Transformer blocks.">
   <meta property="og:description" content="API docs for xFormers. xFormers is a PyTorch extension library for composable and optimized Transformer blocks.">
   <!--<meta property="og:image" content="https://mmf.sh/img/logo.png">-->
@@ -43,7 +43,6 @@
   <link rel="stylesheet" href="../_static/css/customize.css" type="text/css" />
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Attention mechanisms" href="attentions.html" />
   <link rel="prev" title="API Reference" href="index.html" /> 
 
   
@@ -143,14 +142,6 @@
 <p class="caption" role="heading"><span class="caption-text">Components Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Tutorials and examples</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Some custom parts</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../custom_parts/index.html">Custom parts reference</a></li>
 </ul>
 
         
@@ -929,6 +920,16 @@ kv_seqstarts = [1, 1].</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="xformers.ops.fmha.attn_bias.PagedBlockDiagonalCausalWithOffsetGappyKeysMask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xformers.ops.fmha.attn_bias.</span></span><span class="sig-name descname"><span class="pre">PagedBlockDiagonalCausalWithOffsetGappyKeysMask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_seqinfo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_SeqLenInfo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_seqinfo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_GappySeqInfo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_tables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xformers/ops/fmha/attn_bias.html#PagedBlockDiagonalCausalWithOffsetGappyKeysMask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xformers.ops.fmha.attn_bias.PagedBlockDiagonalCausalWithOffsetGappyKeysMask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xformers.ops.fmha.attn_bias.PagedBlockDiagonalGappyKeysMask" title="xformers.ops.fmha.attn_bias.PagedBlockDiagonalGappyKeysMask"><code class="xref py py-class docutils literal notranslate"><span class="pre">PagedBlockDiagonalGappyKeysMask</span></code></a></p>
+<p>Same as BlockDiagonalCausalWithOffsetGappyKeysMask, but for paged attention.
+block_tables has shape [batch_size, max_num_pages] and K/V have shape
+[1, max_num_pages * page_size, num_heads, head_dim] or
+[1, max_num_pages * page_size, num_groups, num_heads, head_dim]</p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="xformers.ops.fmha.attn_bias.BlockDiagonalCausalLocalAttentionMask">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xformers.ops.fmha.attn_bias.</span></span><span class="sig-name descname"><span class="pre">BlockDiagonalCausalLocalAttentionMask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_seqinfo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_SeqLenInfo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_seqinfo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_SeqLenInfo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_batch_sizes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/typing.html#typing.Optional" title="(in Python v3.6)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.6/library/typing.html#typing.Sequence" title="(in Python v3.6)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_window_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xformers/ops/fmha/attn_bias.html#BlockDiagonalCausalLocalAttentionMask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xformers.ops.fmha.attn_bias.BlockDiagonalCausalLocalAttentionMask" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#xformers.ops.fmha.attn_bias.BlockDiagonalCausalMask" title="xformers.ops.fmha.attn_bias.BlockDiagonalCausalMask"><code class="xref py py-class docutils literal notranslate"><span class="pre">BlockDiagonalCausalMask</span></code></a></p>
@@ -1070,8 +1071,6 @@ See <code class="xref py py-attr docutils literal notranslate"><span class="pre"
             <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="attentions.html" class="btn btn-neutral float-right" title="Attention mechanisms" accesskey="n" rel="next">Next <img src="../_static/images/chevron-right-orange.svg" class="next-page"></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="API Reference" accesskey="p" rel="prev"><img src="../_static/images/chevron-right-orange.svg" class="previous-page"> Previous</a>
